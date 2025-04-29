@@ -4,6 +4,7 @@
 ### Dockerビルド
 1. git clone git@github.com:Git-OT-Hub/contact-form.git
 2. docker compose up -d --build
+
 ※ MySQL, phpMyAdmin は、OSによって起動しない場合があるため、それぞれのPCに合わせて docker-compose.yml ファイルを編集してください。
 
 ### Laravel環境構築
