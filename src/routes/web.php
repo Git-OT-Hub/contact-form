@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +16,14 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 */
 
 Route::get('/', function () {
-    return view('auth.register');
-});
-
-Route::get('/admin', function () {
-    return view('admin.index');
+    return view('contacts.create');
 });
 
 Route::post('register', [RegisteredUserController::class, 'store'])->name('register.store');
+Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login.store');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/admin', function () {
+        return view('admin.index');
+    });
+});

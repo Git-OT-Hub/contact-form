@@ -22,6 +22,11 @@
                 </a>
                 <nav class="header-nav">
                     @if (Auth::check())
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <button class="header-nav__button">logout</button>
+                        </form>
                     @else
                         @yield('link')
                     @endif

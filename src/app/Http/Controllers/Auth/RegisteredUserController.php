@@ -11,7 +11,7 @@ use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Fortify\Contracts\RegisterResponse;
 use Laravel\Fortify\Contracts\RegisterViewResponse;
 use Laravel\Fortify\Fortify;
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\Auth\RegisterRequest;
 
 class RegisteredUserController extends Controller
 {
@@ -47,11 +47,11 @@ class RegisteredUserController extends Controller
     /**
      * Create a new registered user.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\Auth\RegisterRequest  $request
      * @param  \Laravel\Fortify\Contracts\CreatesNewUsers  $creator
      * @return \Laravel\Fortify\Contracts\RegisterResponse
      */
-    public function store(UserRequest $request,
+    public function store(RegisterRequest $request,
                           CreatesNewUsers $creator): RegisterResponse
     {
         if (config('fortify.lowercase_usernames') && $request->has(Fortify::username())) {
