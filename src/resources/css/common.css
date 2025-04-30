@@ -1,0 +1,44 @@
+html,
+body {
+    height: 100%;
+}
+
+main {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    background: #ffffff;
+    border-bottom: 2px solid #e2e1df;
+}
+
+.header__inner {
+    margin: 0 auto;
+    max-width: 1230px;
+    padding: 15px 30px;
+}
+
+.header-utilities {
+    display: flex;
+    align-items: center;
+}
+
+.header__span {
+    flex: 1;
+}
+
+.header__logo {
+    flex: 3;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 24px;
+    text-align: center;
+    color: #8b7969;
+}
+
+.header-nav {
+    flex: 1;
+    text-align: center;
+}
