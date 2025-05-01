@@ -34,6 +34,17 @@
             </div>
         </div>
     </header>
+    <div class="flash-message">
+        @if(session('successMessage'))
+            <div class="flash-message__success">
+                {{ session('successMessage') }}
+            </div>
+        @elseif(session('failureMessage'))
+            <div class="flash-message__danger">
+                {{ session('failureMessage') }}
+            </div>
+        @endif
+    </div>
 
     <main>
         @yield('content')

@@ -21,6 +21,7 @@ Route::get('/', function () {
 
 Route::post('register', [RegisteredUserController::class, 'store'])->name('register.store');
 Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login.store');
+Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 Route::middleware('auth')->group(function () {
     Route::get('/admin', function () {

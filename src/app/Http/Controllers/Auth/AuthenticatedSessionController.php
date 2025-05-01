@@ -58,6 +58,8 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request)
     {
         return $this->loginPipeline($request)->then(function ($request) {
+            session()->flash('successMessage', 'ログインしました');
+
             return app(LoginResponse::class);
         });
     }
@@ -105,6 +107,8 @@ class AuthenticatedSessionController extends Controller
             $request->session()->invalidate();
             $request->session()->regenerateToken();
         }
+
+        session()->flash('successMessage', 'ログアウトしました');
 
         return app(LogoutResponse::class);
     }

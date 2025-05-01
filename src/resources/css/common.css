@@ -55,3 +55,15 @@ main {
     background: #f6f6f6;
     cursor: pointer;
 }
+
+.flash-message__success {
+    background: #d1e7dd;
+    color: #0f5132;
+    padding: 10px 30px;
+}
+
+.flash-message__danger {
+    background: #f8d7da;
+    color: #842029;
+    padding: 10px 30px;
+}

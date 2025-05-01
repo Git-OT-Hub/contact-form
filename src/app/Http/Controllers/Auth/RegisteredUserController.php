@@ -64,6 +64,8 @@ class RegisteredUserController extends Controller
 
         $this->guard->login($user, $request->boolean('remember'));
 
+        session()->flash('successMessage', 'ユーザー登録が完了しました');
+
         return app(RegisterResponse::class);
     }
 }
