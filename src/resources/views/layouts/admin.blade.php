@@ -17,7 +17,7 @@
         <div class="header__inner">
             <div class="header-utilities">
                 <span class="header__span"></span>
-                <a href="" class="header__logo">
+                <a href="{{ route('admin.index') }}" class="header__logo">
                     FashionablyLate
                 </a>
                 <nav class="header-nav">

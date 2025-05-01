@@ -6,5 +6,5 @@
 @endsection
 
 @section('content')
-    <h1>管理画面</h1>
+    <h1>Admin</h1>
 @endsection

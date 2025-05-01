@@ -26,5 +26,5 @@ Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name(
 Route::middleware('auth')->group(function () {
     Route::get('/admin', function () {
         return view('admin.index');
-    });
+    })->name('admin.index');
 });

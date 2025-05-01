@@ -20,6 +20,20 @@
 2. npm install
 3. npm run dev
 
+## テストを実施する場合
+### テスト用の環境構築
+1. docker compose exec mysql bash
+2. mysql -u root -p
+3. CREATE DATABASE laravel_test_db;
+4. SHOW databases; で「laravel_test_db」が作成されていることを確認
+5. .env ファイルから .env.testing を作成し、環境変数をテスト用に変更
+6. docker compose exec php bash で php コンテナに入る
+7. php artisan key:generate --env=testing
+8. php artisan config:clear
+9. php artisan migrate --env=testing
+
+※ テストコードを実行する際は、事前に「npm run dev」でフロントエンドのビルドツール(vite)を起動させておいてください。
+
 ## 使用技術(実行環境)
 ### フロントエンド
 - HTML

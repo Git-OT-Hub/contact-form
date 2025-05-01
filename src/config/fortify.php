@@ -74,7 +74,11 @@ return [
     |
     */
 
-    'home' => RouteServiceProvider::HOME,
+    'home' => '/admin',
+
+    'redirects' => [
+        'logout' => config('app.url') . '/login'
+    ],
 
     /*
     |--------------------------------------------------------------------------
