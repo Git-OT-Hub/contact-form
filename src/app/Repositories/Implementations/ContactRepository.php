@@ -4,6 +4,7 @@ namespace App\Repositories\Implementations;
 
 use App\Repositories\Contracts\ContactRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\Category;
 use App\Models\Contact;
 
@@ -40,5 +41,14 @@ class ContactRepository implements ContactRepositoryInterface
         ];
 
         Contact::create($processedContact);
+    }
+
+    /**
+     * 問い合わせ一覧を取得
+     * @return LengthAwarePaginator
+     */
+    public function findAllContacts(): LengthAwarePaginator
+    {
+        return Contact::with('category')->paginate(7);
     }
 }

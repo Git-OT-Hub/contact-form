@@ -23,16 +23,10 @@ Route::group(['as' => 'contacts.'], function () {
     Route::get('/thanks', [ContactController::class, 'thanks'])->name('thanks');
 });
 
-Route::get('/confirm', function () {
-    return view('contacts.confirm');
-});
-
 Route::post('register', [RegisteredUserController::class, 'store'])->name('register.store');
 Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login.store');
 Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('/admin', function () {
-        return view('admin.index');
-    })->name('admin.index');
+Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::get('/', [ContactController::class, 'index'])->name('index');
 });

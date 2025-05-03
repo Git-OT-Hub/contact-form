@@ -1,0 +1,220 @@
+.admin-contacts {
+    width: 90%;
+    margin: 30px auto;
+}
+
+.admin-contacts__heading {
+    text-align: center;
+    color: #8b7969;
+}
+
+.admin-contacts__heading h2 {
+    margin: 0;
+}
+
+.search-form {
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.search-form__item {
+    display: flex;
+    gap: 0 20px;
+}
+
+.search-form__item-input--text input {
+    width: 280px;
+    padding: 20px;
+    height: 30px;
+    border: 1px solid #e3ded9;
+    background: #f4f4f4;
+    color: #8b7969;
+}
+
+.search-form__item-select--gender {
+    position: relative;
+}
+
+.search-form__item-select--gender::after {
+    content: "";
+    position: absolute;
+    top: 16px;
+    right: 8px;
+    border-right: 8px solid transparent;
+    border-left: 8px solid transparent;
+    border-top: 12px solid #e0dfde;
+    border-bottom: 0;
+    pointer-events: none;
+}
+
+.search-form__item-select--gender select {
+    -webkit-appearance: none;
+    appearance: none;
+    padding: 5px 20px;
+    height: 42px;
+    border: 1px solid #e3ded9;
+    background: #f4f4f4;
+    color: #8b7969;
+    cursor: pointer;
+}
+
+.search-form__item-select--category {
+    position: relative;
+}
+
+.search-form__item-select--category::after {
+    content: "";
+    position: absolute;
+    top: 16px;
+    right: 8px;
+    border-right: 8px solid transparent;
+    border-left: 8px solid transparent;
+    border-top: 12px solid #e0dfde;
+    border-bottom: 0;
+    pointer-events: none;
+}
+
+.search-form__item-select--category select {
+    -webkit-appearance: none;
+    appearance: none;
+    padding: 5px 20px;
+    height: 42px;
+    border: 1px solid #e3ded9;
+    background: #f4f4f4;
+    color: #8b7969;
+    cursor: pointer;
+}
+
+.search-form__item-input--date input {
+    padding: 20px;
+    height: 30px;
+    border: 1px solid #e3ded9;
+    background: #f4f4f4;
+    color: #8b7969;
+}
+
+.search-form__item-input--date input::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    cursor: pointer;
+}
+
+.search-form__item-input--date {
+    position: relative;
+}
+
+.search-form__item-input--date::after {
+    content: "";
+    position: absolute;
+    top: 16px;
+    right: 24px;
+    border-right: 8px solid transparent;
+    border-left: 8px solid transparent;
+    border-top: 12px solid #e0dfde;
+    border-bottom: 0;
+    pointer-events: none;
+}
+
+.search-form__button-submit button {
+    padding: 0 20px;
+    height: 42px;
+    border: none;
+    background: #8b7969;
+    color: #fff;
+    cursor: pointer;
+}
+
+.search-form__button-reset button {
+    padding: 0 10px;
+    height: 42px;
+    border: none;
+    background: #d9c6b5;
+    color: #fff;
+    cursor: pointer;
+}
+
+.contacts-table {
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+    border: 1px solid #e0dfde;
+}
+
+.contacts-table__heading {
+    height: 40px;
+    background: #8b7969;
+    color: #fff;
+}
+
+.contacts-table__body tr {
+    height: 48px;
+    color: #8b7969;
+    border-bottom: 1px solid #e0dfde;
+}
+
+.contacts-table__body button {
+    padding: 0 10px;
+    height: 32px;
+    border: 1px solid #e7dcd1;
+    background: #fcfcfc;
+    color: #e7dcd1;
+    cursor: pointer;
+}
+
+.admin-contacts__links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.admin-contacts__links-export {
+    flex: 1;
+}
+
+.admin-contacts__links-pagination {
+    flex: 1;
+}
+
+.admin-contacts__links-export button {
+    padding: 0 20px;
+    height: 32px;
+    border: none;
+    background: #eae7e4;
+    color: #8b7969;
+    cursor: pointer;
+}
+
+.pagination {
+    display: flex;
+    justify-content: end;
+    margin: 0;
+}
+
+.pagination li {
+    border: 1px solid #e0dfde;
+    padding: 5px 10px;
+}
+
+.pagination li:first-child {
+    border-radius: 5px 0 0 5px;
+}
+
+.pagination li:last-child {
+    border-radius: 0 5px 5px 0;
+}
+
+.pagination li a {
+    text-decoration: none;
+    color: #8b7969;
+}
+
+.pagination .disabled {
+    color: #8b7969;
+}
+
+.pagination .active {
+    color: #fff;
+    background: #8b7969;
+    border: 1px solid #8b7969;
+}

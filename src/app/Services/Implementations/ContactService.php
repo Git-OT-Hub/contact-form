@@ -6,6 +6,7 @@ use App\Services\Contracts\ContactServiceInterface;
 use App\Repositories\Contracts\ContactRepositoryInterface;
 use App\Enums\Gender;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ContactService implements ContactServiceInterface
 {
@@ -42,5 +43,14 @@ class ContactService implements ContactServiceInterface
     public function create(array $contact): void
     {
         $this->contactRepository->create($contact);
+    }
+
+    /**
+     * 問い合わせ一覧を取得
+     * @return LengthAwarePaginator
+     */
+    public function getContactList(): LengthAwarePaginator
+    {
+        return $this->contactRepository->findAllContacts();
     }
 }

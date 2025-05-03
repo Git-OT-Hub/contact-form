@@ -70,4 +70,17 @@ class ContactController extends Controller
     {
         return view('contacts.thanks');
     }
+
+    /**
+     * 管理画面の表示
+     * @return View
+     */
+    public function index(): View
+    {
+        $genderList = $this->contactService->getGenderList();
+        $categoryList = $this->contactService->getCategoryList();
+        $contactList = $this->contactService->getContactList();
+
+        return view('admin.index', compact('genderList', 'categoryList', 'contactList'));
+    }
 }
