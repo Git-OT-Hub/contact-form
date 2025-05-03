@@ -12,6 +12,7 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/css/individual/contacts/create.css',
                 'resources/css/individual/contacts/confirm.css',
+                'resources/css/individual/contacts/thanks.css',
                 'resources/js/app.js',
             ],
             refresh: true,

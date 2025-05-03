@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use App\Services\Contracts\ContactServiceInterface;
 use App\Http\Requests\ContactRequest;
 
 class ContactController extends Controller
 {
+    private array $contactFormItems = ['last_name', 'first_name', 'gender', 'email', 'tel_first', 'tel_second', 'tel_third', 'address', 'building', 'category_id', 'detail'];
+
     private ContactServiceInterface $contactService;
 
     public function __construct(ContactServiceInterface $contactService)
@@ -35,8 +38,27 @@ class ContactController extends Controller
      */
     public function confirm(ContactRequest $request): View
     {
-        $contact = $request->only(['last_name', 'first_name', 'gender', 'email', 'tel_first', 'tel_second', 'tel_third', 'address', 'building', 'category_id', 'detail']);
+        $contact = $request->only($this->contactFormItems);
+        $genderList = $this->contactService->getGenderList();
+        $categoryList = $this->contactService->getCategoryList();
 
-        return view('contacts.confirm', compact('contact'));
+        return view('contacts.confirm', compact('contact', 'genderList', 'categoryList'));
+    }
+
+    /**
+     * お問い合わせ修正、登録処理
+     * @param ContactRequest $request
+     * @return RedirectResponse|View
+     */
+    public function store(ContactRequest $request): RedirectResponse|View
+    {
+        if ((string)$request->submit === 'fix') {
+            return redirect()->route('contacts.create')->withInput();
+        }
+
+        $contact = $request->only($this->contactFormItems);
+        $this->contactService->create($contact);
+
+        return view('contacts.thanks');
     }
 }

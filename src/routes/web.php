@@ -19,6 +19,11 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 Route::group(['as' => 'contacts.'], function () {
     Route::get('/', [ContactController::class, 'create'])->name('create');
     Route::post('/confirm', [ContactController::class, 'confirm'])->name('confirm');
+    Route::post('/thanks', [ContactController::class, 'store'])->name('store');
+});
+
+Route::get('/confirm', function () {
+    return view('contacts.confirm');
 });
 
 Route::post('register', [RegisteredUserController::class, 'store'])->name('register.store');

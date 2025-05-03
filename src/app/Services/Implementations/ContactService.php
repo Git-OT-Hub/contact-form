@@ -31,6 +31,16 @@ class ContactService implements ContactServiceInterface
      */
     public function getCategoryList(): Collection
     {
-        return $this->contactRepository->findAll();
+        return $this->contactRepository->findAllCategories();
+    }
+
+    /**
+     * 問い合わせ内容をDBへ登録
+     * @param array $contact 問い合わせ内容
+     * @return void
+     */
+    public function create(array $contact): void
+    {
+        $this->contactRepository->create($contact);
     }
 }
