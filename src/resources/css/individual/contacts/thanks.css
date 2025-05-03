@@ -1,0 +1,39 @@
+.contact-thanks__back {
+    position: absolute;
+    top: 40%;
+    left: 10%;
+}
+
+.contact-thanks__back span {
+    font-size: 160px;
+    color: #f8f8f8;
+}
+
+.contact-thanks__front {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    z-index: 1;
+}
+
+.contact-thanks__content {
+    color: #8b7969;
+    font-weight: bold;
+}
+
+.contact-thanks__button {
+    padding-top: 30px;
+    text-align: center;
+}
+
+.contact-thanks__button a {
+    text-decoration: none;
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    border: none;
+    text-align: center;
+    line-height: 30px;
+    color: #fff;
+    background: #8b7969;
+}

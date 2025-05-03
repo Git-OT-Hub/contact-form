@@ -25,7 +25,19 @@
     </div>
 
     <main>
-        arigato
+        <div class="contact-thanks">
+            <div class="contact-thanks__back">
+                <span>Thank you</span>
+            </div>
+            <div class="contact-thanks__front">
+                <div class="contact-thanks__content">
+                    お問い合わせありがとうございました
+                </div>
+                <div class="contact-thanks__button">
+                    <a href="{{ route('contacts.create') }}">HOME</a>
+                </div>
+            </div>
+        </div>
     </main>
 </body>
 </html>
