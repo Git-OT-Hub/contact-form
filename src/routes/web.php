@@ -19,7 +19,8 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 Route::group(['as' => 'contacts.'], function () {
     Route::get('/', [ContactController::class, 'create'])->name('create');
     Route::post('/confirm', [ContactController::class, 'confirm'])->name('confirm');
-    Route::post('/thanks', [ContactController::class, 'store'])->name('store');
+    Route::post('/', [ContactController::class, 'store'])->name('store');
+    Route::get('/thanks', [ContactController::class, 'thanks'])->name('thanks');
 });
 
 Route::get('/confirm', function () {

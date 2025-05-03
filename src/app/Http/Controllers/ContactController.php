@@ -48,9 +48,9 @@ class ContactController extends Controller
     /**
      * お問い合わせ修正、登録処理
      * @param ContactRequest $request
-     * @return RedirectResponse|View
+     * @return RedirectResponse
      */
-    public function store(ContactRequest $request): RedirectResponse|View
+    public function store(ContactRequest $request): RedirectResponse
     {
         if ((string)$request->submit === 'fix') {
             return redirect()->route('contacts.create')->withInput();
@@ -59,6 +59,15 @@ class ContactController extends Controller
         $contact = $request->only($this->contactFormItems);
         $this->contactService->create($contact);
 
+        return redirect()->route('contacts.thanks');
+    }
+
+    /**
+     * サンクスページの表示
+     * @return View
+     */
+    public function thanks(): View
+    {
         return view('contacts.thanks');
     }
 }
