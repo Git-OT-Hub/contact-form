@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
@@ -15,15 +16,16 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 |
 */
 
-Route::get('/', function () {
-    return view('contacts.create');
+Route::group(['as' => 'contacts.'], function () {
+    Route::get('/', [ContactController::class, 'create'])->name('create');
+    Route::post('/confirm', [ContactController::class, 'confirm'])->name('confirm');
 });
 
 Route::post('register', [RegisteredUserController::class, 'store'])->name('register.store');
 Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login.store');
 Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-Route::middleware('auth')->group(function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin', function () {
         return view('admin.index');
     })->name('admin.index');

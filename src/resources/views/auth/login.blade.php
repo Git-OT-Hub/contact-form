@@ -3,7 +3,7 @@
 @section('title', 'ログインページ')
 
 @section('vite')
-    @vite(['resources/css/individual/login.css'])
+    @vite(['resources/css/admin/individual/login.css'])
 @endsection
 
 @section('link')

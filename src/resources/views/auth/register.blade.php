@@ -3,7 +3,7 @@
 @section('title', 'ユーザー登録ページ')
 
 @section('vite')
-    @vite(['resources/css/individual/register.css'])
+    @vite(['resources/css/admin/individual/register.css'])
 @endsection
 
 @section('link')

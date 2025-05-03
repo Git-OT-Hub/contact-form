@@ -5,10 +5,14 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
+                'resources/css/admin/app.css',
+                'resources/css/admin/individual/register.css',
+                'resources/css/admin/individual/login.css',
+                'resources/js/admin/app.js',
                 'resources/css/app.css',
-                'resources/css/individual/register.css',
-                'resources/css/individual/login.css',
-                'resources/js/app.js'
+                'resources/css/individual/contacts/create.css',
+                'resources/css/individual/contacts/confirm.css',
+                'resources/js/app.js',
             ],
             refresh: true,
         }),
