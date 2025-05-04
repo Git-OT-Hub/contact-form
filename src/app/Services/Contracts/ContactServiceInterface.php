@@ -31,4 +31,11 @@ interface ContactServiceInterface
      * @return LengthAwarePaginator
      */
     public function getContactList(): LengthAwarePaginator;
+
+    /**
+     * 問い合わせに対する検索結果を取得
+     * @param array $search 検索内容
+     * @return LengthAwarePaginator
+     */
+    public function searchContacts(array $search): LengthAwarePaginator;
 }

@@ -12,20 +12,20 @@
             <h2>Admin</h2>
         </div>
 
-        <form class="search-form" method="" action="">
+        <form class="search-form" method="GET" action="{{ route('admin.search') }}">
             @csrf
 
             <div class="search-form__item">
                 <div class="search-form__item-input--text">
-                    <input type="text" name="name_email" value="{{ old('name_email') }}" placeholder="名前やメールアドレスを入力してください">
+                    <input type="text" name="keyword" value="{{ request('keyword') }}" placeholder="名前やメールアドレスを入力してください">
                 </div>
 
                 <div class="search-form__item-select--gender">
                     <select name="gender">
                         <option value="">性別</option>
-                        <option value="all">全て</option>
+                        <option value="all" {{ (string)request('gender') === 'all' ? 'selected' : '' }}>全て</option>
                         @foreach($genderList as $gender)
-                            <option value="{{ $gender->value }}" {{ (string)old('gender') === (string)$gender->value ? 'selected' : '' }}>{{ $gender->label() }}</option>
+                            <option value="{{ $gender->value }}" {{ (string)request('gender') === (string)$gender->value ? 'selected' : '' }}>{{ $gender->label() }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -34,21 +34,21 @@
                     <select name="category_id">
                         <option value="">お問い合わせの種類</option>
                         @foreach($categoryList as $category)
-                            <option value="{{ $category['id'] }}" {{ (string)old('category_id') === (string)$category['id'] ? 'selected' : '' }}>{{ $category['content'] }}</option>
+                            <option value="{{ $category['id'] }}" {{ (string)request('category_id') === (string)$category['id'] ? 'selected' : '' }}>{{ $category['content'] }}</option>
                         @endforeach
                     </select>
                 </div>
 
                 <div class="search-form__item-input--date">
-                    <input type="date" name="created_at" value="{{ old('created_at') }}">
+                    <input type="date" name="created_at" value="{{ request('created_at') }}">
                 </div>
 
                 <div class="search-form__button-submit">
-                    <button type="submit">検索</button>
+                    <button type="submit" name="submit" value="search">検索</button>
                 </div>
 
                 <div class="search-form__button-reset">
-                    <button type="submit">リセット</button>
+                    <button type="submit" name="submit" value="reset">リセット</button>
                 </div>
             </div>
         </form>
@@ -72,7 +72,7 @@
                 </tr>
             </thead>
             <tbody class="contacts-table__body">
-                @foreach($contactList as $contact)
+                @forelse($contactList as $contact)
                     <tr>
                         <td>
                             {{ "{$contact['last_name']} {$contact['first_name']}" }}
@@ -94,7 +94,13 @@
                             <button id="{{ $contact['id'] }}">詳細</button>
                         </td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td>
+                            問い合わせ内容が見つかりませんでした。
+                        </td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

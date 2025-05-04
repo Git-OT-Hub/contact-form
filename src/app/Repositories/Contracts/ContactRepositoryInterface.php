@@ -25,4 +25,11 @@ interface ContactRepositoryInterface
      * @return LengthAwarePaginator
      */
     public function findAllContacts(): LengthAwarePaginator;
+
+    /**
+     * 問い合わせに対する検索結果を取得
+     * @param array $search 検索内容
+     * @return LengthAwarePaginator
+     */
+    public function searchContacts(array $search): LengthAwarePaginator;
 }

@@ -83,4 +83,28 @@ class ContactController extends Controller
 
         return view('admin.index', compact('genderList', 'categoryList', 'contactList'));
     }
+
+    /**
+     * 検索結果の表示
+     * @param Request $request 検索内容
+     * @return RedirectResponse|View
+     */
+    public function search(Request $request): RedirectResponse|View
+    {
+        if ((string)$request->submit === 'reset') {
+            return redirect()->route('admin.index');
+        }
+
+        $search = $request->only(['keyword', 'gender', 'category_id', 'created_at']);
+        $keyword = $search['keyword'] ?? '';
+        $gender = $search['gender'] ?? '';
+        $category_id = $search['category_id'] ?? '';
+        $created_at = $search['created_at'] ?? '';
+
+        $genderList = $this->contactService->getGenderList();
+        $categoryList = $this->contactService->getCategoryList();
+        $contactList = $this->contactService->searchContacts($search);
+
+        return view('admin.index', compact('genderList', 'categoryList', 'contactList', 'keyword', 'gender', 'category_id', 'created_at'));
+    }
 }
