@@ -30,4 +30,6 @@ Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name(
 Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/', [ContactController::class, 'index'])->name('index');
     Route::get('search', [ContactController::class, 'search'])->name('search');
+    Route::delete('delete/{contact}', [ContactController::class, 'destroy'])->name('delete');
+    Route::post('csv_download', [ContactController::class, 'downloadCsv'])->name('csv_download');
 });

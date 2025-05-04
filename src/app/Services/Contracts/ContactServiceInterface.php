@@ -4,6 +4,7 @@ namespace App\Services\Contracts;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use App\Models\Contact;
 
 interface ContactServiceInterface
 {
@@ -38,4 +39,11 @@ interface ContactServiceInterface
      * @return LengthAwarePaginator
      */
     public function searchContacts(array $search): LengthAwarePaginator;
+
+    /**
+     * 問い合わせ削除
+     * @param Contact $contact
+     * @return void
+     */
+    public function deleteContact(Contact $contact): void;
 }

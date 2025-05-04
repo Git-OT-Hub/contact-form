@@ -218,3 +218,89 @@
     background: #8b7969;
     border: 1px solid #8b7969;
 }
+
+#cantacts_mask {
+    background: rgba(171, 167, 167, 0.4);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+}
+
+#cantacts_mask.hidden {
+    display: none;
+}
+
+
+.admin-contacts__show {
+    background: #fff;
+    border: 1px solid #8b7969;
+    padding: 30px;
+    width: 80%;
+    position: absolute;
+    top: 10%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    z-index: 2;
+    box-shadow: 3px 3px 5px #b3aeae;
+}
+
+.admin-contacts__show.hidden {
+    display: none;
+}
+
+.form__table {
+    width: 100%;
+}
+
+.form__table-group {
+    height: 60px;
+}
+
+.form__table-title {
+    width: 30%;
+    text-align: start;
+    color: #8b7969;
+    padding: 10px 30px;
+    font-weight: bold;
+}
+
+.form__table-content {
+    width: 70%;
+    color: #8b7969;
+    padding: 10px 30px;
+}
+
+.form__table-button {
+    text-align: center;
+    margin: 60px 0 30px 0;
+}
+
+.form__table-button button {
+    padding: 0 30px;
+    height: 40px;
+    border: none;
+    background: #ba370c;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.admin-contacts__show-delete {
+    text-align: end;
+}
+
+.admin-contacts__show-delete button {
+    display: inline-block;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #8b7969;
+    border-radius: 50%;
+    background: #fff;
+    color: #8b7969;
+    cursor: pointer;
+}

@@ -3,7 +3,7 @@
 @section('title', '管理画面')
 
 @section('vite')
-    @vite(['resources/css/admin/individual/index.css'])
+    @vite(['resources/css/admin/individual/index.css', 'resources/js/admin/individual/index.js'])
 @endsection
 
 @section('content')
@@ -55,7 +55,11 @@
 
         <div class="admin-contacts__links">
             <div class="admin-contacts__links-export">
-                <button>エクスポート</button>
+                <form method="POST" action="{{ route('admin.csv_download') }}">
+                    @csrf
+
+                    <button type="submit">エクスポート</button>
+                </form>
             </div>
             <div class="admin-contacts__links-pagination">
                 {{ $contactList->links('pagination::default') }}
@@ -91,7 +95,7 @@
                             {{ $contact['category']['content'] }}
                         </td>
                         <td>
-                            <button id="{{ $contact['id'] }}">詳細</button>
+                            <button value="{{ $contact['id'] }}" class="contact__show-button">詳細</button>
                         </td>
                     </tr>
                 @empty
@@ -103,5 +107,16 @@
                 @endforelse
             </tbody>
         </table>
+
+        <div class="admin-contacts__detail-item">
+            <div id="cantacts_mask" class="hidden"></div>
+
+            <div>
+                @forelse($contactList as $contact)
+                    @include('admin.show', ['contact' => $contact, 'genderList' => $genderList])
+                @empty
+                @endforelse
+            </div>
+        </div>
     </div>
 @endsection

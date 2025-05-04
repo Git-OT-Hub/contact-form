@@ -10,6 +10,7 @@ export default defineConfig({
                 'resources/css/admin/individual/login.css',
                 'resources/css/admin/individual/index.css',
                 'resources/js/admin/app.js',
+                'resources/js/admin/individual/index.js',
                 'resources/css/app.css',
                 'resources/css/individual/contacts/create.css',
                 'resources/css/individual/contacts/confirm.css',

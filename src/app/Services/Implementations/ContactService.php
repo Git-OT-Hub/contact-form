@@ -7,6 +7,7 @@ use App\Repositories\Contracts\ContactRepositoryInterface;
 use App\Enums\Gender;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use App\Models\Contact;
 
 class ContactService implements ContactServiceInterface
 {
@@ -61,5 +62,15 @@ class ContactService implements ContactServiceInterface
      */
     public function searchContacts(array $search): LengthAwarePaginator{
         return $this->contactRepository->searchContacts($search);
+    }
+
+    /**
+     * 問い合わせ削除
+     * @param Contact $contact
+     * @return void
+     */
+    public function deleteContact(Contact $contact): void
+    {
+        $this->contactRepository->delete($contact);
     }
 }

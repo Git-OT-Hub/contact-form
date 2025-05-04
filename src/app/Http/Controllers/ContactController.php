@@ -7,6 +7,7 @@ use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use App\Services\Contracts\ContactServiceInterface;
 use App\Http\Requests\ContactRequest;
+use App\Models\Contact;
 
 class ContactController extends Controller
 {
@@ -106,5 +107,21 @@ class ContactController extends Controller
         $contactList = $this->contactService->searchContacts($search);
 
         return view('admin.index', compact('genderList', 'categoryList', 'contactList', 'keyword', 'gender', 'category_id', 'created_at'));
+    }
+
+    /**
+     * お問い合わせ削除
+     * @param Contact $contact
+     * @return RedirectResponse
+     */
+    public function destroy(Contact $contact): RedirectResponse
+    {
+        $this->contactService->deleteContact($contact);
+
+        return redirect()->route('admin.index');
+    }
+
+    public function downloadCsv(Request $request)
+    {
     }
 }

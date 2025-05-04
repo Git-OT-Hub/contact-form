@@ -66,4 +66,14 @@ class ContactRepository implements ContactRepositoryInterface
                                         ->paginate(7)
                                         ->withQueryString();
     }
+
+    /**
+     * 問い合わせ削除
+     * @param Contact $contact
+     * @return void
+     */
+    public function delete(Contact $contact): void
+    {
+        $contact->delete();
+    }
 }
