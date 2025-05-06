@@ -55,8 +55,13 @@
 
         <div class="admin-contacts__links">
             <div class="admin-contacts__links-export">
-                <form method="POST" action="{{ route('admin.csv_download') }}">
+                <form method="GET" action="{{ route('admin.downloadCsv') }}">
                     @csrf
+
+                    <input type="hidden" name="keyword" value="{{ request('keyword') }}">
+                    <input type="hidden" name="gender" value="{{ request('gender') }}">
+                    <input type="hidden" name="category_id" value="{{ request('category_id') }}">
+                    <input type="hidden" name="created_at" value="{{ request('created_at') }}">
 
                     <button type="submit">エクスポート</button>
                 </form>

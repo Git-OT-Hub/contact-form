@@ -4,6 +4,7 @@ namespace App\Repositories\Contracts;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Builder;
 use App\Models\Contact;
 
 interface ContactRepositoryInterface
@@ -30,9 +31,10 @@ interface ContactRepositoryInterface
     /**
      * 問い合わせに対する検索結果を取得
      * @param array $search 検索内容
-     * @return LengthAwarePaginator
+     * @param string $flag ページネーション機能を停止するかどうか
+     * @return LengthAwarePaginator|Collection
      */
-    public function searchContacts(array $search): LengthAwarePaginator;
+    public function searchContacts(array $search, string $flag = ''): LengthAwarePaginator|Collection;
 
     /**
      * 問い合わせ削除

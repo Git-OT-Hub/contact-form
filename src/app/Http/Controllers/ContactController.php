@@ -8,6 +8,8 @@ use Illuminate\Http\RedirectResponse;
 use App\Services\Contracts\ContactServiceInterface;
 use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Http\Response as HttpResponse;
 
 class ContactController extends Controller
 {
@@ -96,11 +98,17 @@ class ContactController extends Controller
             return redirect()->route('admin.index');
         }
 
-        $search = $request->only(['keyword', 'gender', 'category_id', 'created_at']);
-        $keyword = $search['keyword'] ?? '';
-        $gender = $search['gender'] ?? '';
-        $category_id = $search['category_id'] ?? '';
-        $created_at = $search['created_at'] ?? '';
+        $search = [
+            'keyword' => $request->keyword ?? '',
+            'gender' => $request->gender ?? '',
+            'category_id' => $request->category_id ?? '',
+            'created_at' => $request->created_at ?? '',
+        ];
+
+        $keyword = $search['keyword'];
+        $gender = $search['gender'];
+        $category_id = $search['category_id'];
+        $created_at = $search['created_at'];
 
         $genderList = $this->contactService->getGenderList();
         $categoryList = $this->contactService->getCategoryList();
@@ -121,7 +129,25 @@ class ContactController extends Controller
         return redirect()->route('admin.index');
     }
 
-    public function downloadCsv(Request $request)
+    /**
+     * 問い合わせ内容のCSV出力機能
+     * @param Request $request 検索内容
+     * @return HttpResponse
+     */
+    public function downloadCsv(Request $request): HttpResponse
     {
+        $search = [
+            'keyword' => $request->keyword ?? '',
+            'gender' => $request->gender ?? '',
+            'category_id' => $request->category_id ?? '',
+            'created_at' => $request->created_at ?? '',
+        ];
+        $flag = 'paginate_none';
+
+        $contactList = $this->contactService->searchContacts($search, $flag);
+        $genderList = $this->contactService->getGenderList();
+        $responseItems = $this->contactService->processForCSV($contactList, $genderList);
+
+        return Response::make($responseItems['csv'], 200, $responseItems['headers']);
     }
 }
