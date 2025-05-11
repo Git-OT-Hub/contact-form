@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Builder;
 use App\Enums\Gender;
+use Illuminate\Support\Facades\DB;
 
 class Contact extends Model
 {
@@ -41,10 +42,12 @@ class Contact extends Model
      */
     public function scopeKeywordSearch(Builder $query, string $keyword): Builder
     {
-        if (!empty($keyword)) {
-            return $query->where('first_name', 'like', "%{$keyword}%")
-                         ->orWhere('last_name', 'like', "%{$keyword}%")
-                         ->orWhere('email', 'like', "%{$keyword}%");
+        $replaceKeyword = str_replace(["　", " "], "", $keyword);
+        if (!empty($replaceKeyword)) {
+            return $query->where(function ($q) use ($replaceKeyword) {
+                $q->where(DB::raw('CONCAT(last_name, first_name)'), 'like', "%{$replaceKeyword}%")
+                ->orWhere('email', 'like', "%{$replaceKeyword}%");
+            });
         }
 
         return $query;
